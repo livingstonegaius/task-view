@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './App.css';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
+import Filter from './components/Filter';
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -18,6 +19,8 @@ function App() {
       completed: true,
     },
   ]);
+
+  const [currentFilter, setCurrentFilter] = useState('all');
 
   const toggleComplete = (id) => {
     setTasks((currentTasks) =>
@@ -46,11 +49,16 @@ const addTask = (newTask) => {
       <p>Your tasks at a glance.</p>
 
       <TaskForm onAddTask={addTask} />
+      <Filter
+  currentFilter={currentFilter}
+  onFilterChange={setCurrentFilter}
+/>
 <section>
   <TaskList
     tasks={tasks}
     onToggleComplete={toggleComplete}
     onDelete={deleteTask}
+     currentFilter={currentFilter}
   />
 </section>
 
