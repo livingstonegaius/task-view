@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Task from './components/Task';
 import './App.css';
 import TaskList from './components/TaskList';
+import TaskForm from './components/TaskForm';
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -35,12 +35,17 @@ function App() {
     );
   };
 
+const addTask = (newTask) => {
+  setTasks((currentTasks) => [...currentTasks, newTask]);
+};
+
+
   return (
     <main className="app">
       <h1>Task View</h1>
       <p>Your tasks at a glance.</p>
 
-      
+      <TaskForm onAddTask={addTask} />
 <section>
   <TaskList
     tasks={tasks}
