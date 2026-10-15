@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Task from './components/Task';
 import './App.css';
+import TaskList from './components/TaskList';
 
 function App() {
   const [tasks, setTasks] = useState([
@@ -39,18 +40,17 @@ function App() {
       <h1>Task View</h1>
       <p>Your tasks at a glance.</p>
 
-      <section>
-        {tasks.map((task) => (
-          <Task
-            key={task.id}
-            task={task}
-            onToggleComplete={toggleComplete}
-            onDelete={deleteTask}
-          />
-        ))}
-      </section>
+      
+<section>
+  <TaskList
+    tasks={tasks}
+    onToggleComplete={toggleComplete}
+    onDelete={deleteTask}
+  />
+</section>
 
-      {tasks.length === 0 && <p>No tasks remaining.</p>}
+{tasks.length === 0 && <p>No tasks remaining.</p>}
+
     </main>
   );
 }
